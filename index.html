@@ -211,14 +211,53 @@
         }
 
         @media print {
-            @page { size: A4 landscape; margin: 10mm; }
-            body { background: white !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            @page { 
+                size: A4 landscape; 
+                margin: 4mm; 
+            }
+            body { 
+                background: white !important; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                zoom: 0.82;
+            }
             .no-print { display: none !important; }
-            .app-container { box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
-            .timetable-grid { min-width: 100%; gap: 8px; padding: 0; background: white; border: none; grid-template-rows: 40px repeat(4, 75px) 35px repeat(6, 75px); }
+            .app-container { 
+                box-shadow: none !important; 
+                border: none !important; 
+                padding: 0 !important; 
+                margin: 0 !important; 
+                max-width: 100% !important; 
+                width: 100% !important;
+            }
+            .timetable-container {
+                overflow: visible !important;
+            }
+            .timetable-grid { 
+                min-width: 100% !important; 
+                width: 100% !important;
+                gap: 8px !important; 
+                padding: 0 !important; 
+                background: white; 
+                border: none; 
+                grid-template-rows: 40px repeat(4, 75px) 35px repeat(6, 75px) !important; 
+            }
+            .grid-header, .time-col {
+                font-size: 0.75rem !important;
+            }
             .empty-slot { background: none !important; border: 1px dashed #f1f5f9 !important; }
-            .course-card { box-shadow: none !important; border-width: 1.5px !important; }
-            .course-loc { border: 1px solid rgba(0,0,0,0.1) !important; }
+            .course-card { 
+                box-shadow: none !important; 
+                border-width: 1.5px !important; 
+                padding: 8px !important;
+            }
+            .course-title { font-size: 0.85rem !important; }
+            .course-type { font-size: 0.65rem !important; margin-bottom: 4px !important; }
+            .course-loc { font-size: 0.7rem !important; padding: 3px 6px !important; }
+            .lunch-row {
+                font-size: 0.8rem !important;
+                letter-spacing: 0.15em !important;
+            }
         }
     </style>
 </head>
@@ -333,7 +372,6 @@
             { subj: 'PLBL', code: 'PLBL 22561', type: 'LAB', col: 3, row: 3, span: 3, loc: 'Group 1', condition: (s) => s.includes('MIBI') || s.includes('COST') || (!s.includes('MIBI') && !s.includes('COST')) },
             { subj: 'PLBL', code: 'PLBL 22561', type: 'LAB', col: 3, row: 7, span: 3, loc: 'Group 2', condition: (s) => !s.includes('MIBI') && !s.includes('COST') },
             { subj: 'MIBI', code: 'MIBI 22542', type: 'LAB', col: 3, row: 7, span: 3, loc: '', condition: () => true },
-            // Added Tuesday morning CHEM 22721 Group for MIBI + ZOOL students (09:00 - 12:00, row 3, span 3)
             { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 3, row: 3, span: 3, loc: 'MIBI/ZOOL Group', condition: (s) => s.includes('MIBI') && s.includes('ZOOL') },
 
             // WEDNESDAY LABS
@@ -346,7 +384,7 @@
             { subj: 'BIOC', code: 'BIOC 22661', type: 'LAB', col: 5, row: 7, span: 3, loc: '', condition: () => true },
             { subj: 'COST', code: 'COST 22073', type: 'LAB', col: 5, row: 7, span: 2, loc: '', condition: () => true },
 
-            // FRIDAY LABS (PLBL 22541 Group 1 adjusted to span 2 for 10.00-12.00, starting at row 4)
+            // FRIDAY LABS
             { subj: 'PLBL', code: 'PLBL 22541', type: 'LAB', col: 6, row: 4, span: 2, loc: 'Group 1 (ICT)', condition: () => true },
             { subj: 'PLBL', code: 'PLBL 22541', type: 'LAB', col: 6, row: 7, span: 2, loc: 'Group 2 (ICT)', condition: (s) => !s.includes('MIBI') },
             { subj: 'ZOOL', code: 'ZOOL 22752', type: 'LAB', col: 6, row: 3, span: 3, loc: 'No Grouping', condition: () => true }
