@@ -213,13 +213,13 @@
         @media print {
             @page { 
                 size: A4 landscape; 
-                margin: 4mm; 
+                margin: 5mm; 
             }
             body { 
                 background: white !important; 
                 -webkit-print-color-adjust: exact !important; 
                 print-color-adjust: exact !important; 
-                zoom: 0.82;
+                zoom: 0.65;
             }
             .no-print { display: none !important; }
             .app-container { 
@@ -236,27 +236,27 @@
             .timetable-grid { 
                 min-width: 100% !important; 
                 width: 100% !important;
-                gap: 8px !important; 
+                gap: 6px !important; 
                 padding: 0 !important; 
                 background: white; 
                 border: none; 
-                grid-template-rows: 40px repeat(4, 75px) 35px repeat(6, 75px) !important; 
+                grid-template-rows: 35px repeat(4, 55px) 30px repeat(6, 55px) !important; 
             }
             .grid-header, .time-col {
-                font-size: 0.75rem !important;
+                font-size: 0.65rem !important;
             }
             .empty-slot { background: none !important; border: 1px dashed #f1f5f9 !important; }
             .course-card { 
                 box-shadow: none !important; 
                 border-width: 1.5px !important; 
-                padding: 8px !important;
+                padding: 4px !important;
             }
-            .course-title { font-size: 0.85rem !important; }
-            .course-type { font-size: 0.65rem !important; margin-bottom: 4px !important; }
-            .course-loc { font-size: 0.7rem !important; padding: 3px 6px !important; }
+            .course-title { font-size: 0.7rem !important; }
+            .course-type { font-size: 0.55rem !important; margin-bottom: 2px !important; }
+            .course-loc { font-size: 0.6rem !important; padding: 2px 4px !important; }
             .lunch-row {
-                font-size: 0.8rem !important;
-                letter-spacing: 0.15em !important;
+                font-size: 0.7rem !important;
+                letter-spacing: 0.1em !important;
             }
         }
     </style>
