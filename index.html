@@ -46,25 +46,14 @@
         .timetable-grid {
             display: grid;
             grid-template-columns: 80px repeat(5, minmax(200px, 1fr));
-            grid-template-rows: 50px repeat(4, 90px) 45px repeat(5, 90px);
+            grid-template-rows: 50px repeat(4, 90px) 45px repeat(6, 90px);
             gap: 12px;
             min-width: 1100px;
-            background: #f8fafc; /* Add a soft background to the grid area */
+            background: #f8fafc;
             padding: 16px;
             border-radius: 20px;
             border: 1px solid #f1f5f9;
-        }
-
-        .grid-header, .time-col {
-            background: #ffffff;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            position: relative;
         }
 
         .grid-header, .time-col {
@@ -100,13 +89,14 @@
         }
 
         .course-wrapper {
-            display: flex;
-            gap: 6px;
             animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
+            display: flex;
+            padding: 2px;
         }
 
         .course-card {
-            flex: 1;
+            width: 100%;
             border-radius: 16px;
             padding: 0.75rem;
             display: flex;
@@ -117,6 +107,7 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .course-card::after {
@@ -134,14 +125,13 @@
         .course-card:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 16px 32px rgba(0,0,0,0.1);
-            z-index: 10;
+            z-index: 20;
         }
 
         .course-card:hover::after {
             left: 150%;
         }
 
-        /* Vibrant Pastel Theme Colors with Solid Accent Borders */
         .theme-CHEM { background: #e0e7ff; border: 1px solid #c7d2fe; border-left: 5px solid #6366f1; color: #312e81; }
         .theme-ZOOL { background: #fef3c7; border: 1px solid #fde68a; border-left: 5px solid #f59e0b; color: #78350f; }
         .theme-PLBL { background: #d1fae5; border: 1px solid #a7f3d0; border-left: 5px solid #10b981; color: #064e3b; }
@@ -150,7 +140,7 @@
         .theme-COST { background: #e0f2fe; border: 1px solid #bae6fd; border-left: 5px solid #0ea5e9; color: #0c4a6e; }
 
         .course-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
-        .course-type { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; opacity: 0.8; margin-bottom: 6px; letter-spacing: 0.05em; }
+        .course-type { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; opacity: 0.85; margin-bottom: 6px; letter-spacing: 0.05em; }
         .course-loc { font-size: 0.75rem; font-weight: 600; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); width: 95%; margin-top: auto;}
         
         @keyframes fadeIn {
@@ -158,11 +148,7 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        .subject-toggle {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
+        .subject-toggle { cursor: pointer; transition: all 0.2s ease; }
         .subject-toggle .toggle-btn {
             background: #ffffff;
             color: var(--text-muted);
@@ -175,7 +161,6 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.08);
         }
 
-        /* Apply theme colors to buttons when checked matching the new vibrant colors */
         .subject-toggle input[value="CHEM"]:checked + .toggle-btn { background: #e0e7ff; border-color: #6366f1; color: #312e81; }
         .subject-toggle input[value="ZOOL"]:checked + .toggle-btn { background: #fef3c7; border-color: #f59e0b; color: #78350f; }
         .subject-toggle input[value="PLBL"]:checked + .toggle-btn { background: #d1fae5; border-color: #10b981; color: #064e3b; }
@@ -183,25 +168,14 @@
         .subject-toggle input[value="BIOC"]:checked + .toggle-btn { background: #ffe4e6; border-color: #f43f5e; color: #881337; }
         .subject-toggle input[value="COST"]:checked + .toggle-btn { background: #e0f2fe; border-color: #0ea5e9; color: #0c4a6e; }
 
-        /* Textured empty slots to reduce visual emptiness */
         .empty-slot {
-            background: repeating-linear-gradient(
-                -45deg,
-                #ffffff,
-                #ffffff 10px,
-                #f8fafc 10px,
-                #f8fafc 20px
-            );
+            background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 10px, #f8fafc 10px, #f8fafc 20px);
             border: 1px dashed #cbd5e1;
             border-radius: 12px;
             transition: all 0.3s ease;
             opacity: 0.7;
         }
-        .empty-slot:hover {
-            opacity: 1;
-            border-color: #94a3b8;
-            background: #ffffff;
-        }
+        .empty-slot:hover { opacity: 1; border-color: #94a3b8; background: #ffffff; }
 
         #toast {
             position: fixed;
@@ -220,10 +194,7 @@
             align-items: center;
             gap: 8px;
         }
-        
-        #toast.show {
-            bottom: 30px;
-        }
+        #toast.show { bottom: 30px; }
 
         .empty-state-msg {
             grid-column: 2 / -1;
@@ -240,59 +211,27 @@
         }
 
         @media print {
-            @page {
-                size: A4 landscape;
-                margin: 10mm;
-            }
-            body {
-                background: white !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .app-container {
-                box-shadow: none !important;
-                border: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                max-width: 100% !important;
-            }
-            .timetable-grid {
-                min-width: 100%;
-                gap: 8px;
-                padding: 0;
-                background: white;
-                border: none;
-                grid-template-rows: 40px repeat(4, 75px) 35px repeat(5, 75px);
-            }
-            .empty-slot {
-                background: none !important;
-                border: 1px dashed #f1f5f9 !important;
-            }
-            .course-card {
-                box-shadow: none !important;
-                border-width: 1.5px !important;
-            }
-            .course-loc {
-                border: 1px solid rgba(0,0,0,0.1) !important;
-            }
+            @page { size: A4 landscape; margin: 10mm; }
+            body { background: white !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .no-print { display: none !important; }
+            .app-container { box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            .timetable-grid { min-width: 100%; gap: 8px; padding: 0; background: white; border: none; grid-template-rows: 40px repeat(4, 75px) 35px repeat(6, 75px); }
+            .empty-slot { background: none !important; border: 1px dashed #f1f5f9 !important; }
+            .course-card { box-shadow: none !important; border-width: 1.5px !important; }
+            .course-loc { border: 1px solid rgba(0,0,0,0.1) !important; }
         }
     </style>
 </head>
 <body class="p-4 md:p-8">
 
-    <div class="max-w-[1250px] w-full app-container p-6 md:p-10 mt-2">
-        
+    <div class="max-w-[1300px] w-full app-container p-6 md:p-10 mt-2">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 border-b border-slate-100 pb-6">
             <div>
                 <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight mb-1">2nd Semester time table - BS</h1>
                 <p class="text-slate-500 font-medium text-sm no-print">
-                    Select up to <strong class="text-indigo-600">3 main subjects</strong>. Labs are automatically resolved without collisions.
+                    Select up to <strong class="text-indigo-600">3 main subjects</strong>. Labs and available alternative slots are dynamically calculated.
                 </p>
             </div>
-            
             <button onclick="exportPDF()" class="no-print flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl font-semibold transition shadow-lg shadow-slate-200 border border-slate-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -301,14 +240,11 @@
             </button>
         </div>
 
-        <!-- Subjects selection area (hidden on print) -->
-        <div class="flex flex-wrap gap-3 mb-8 no-print" id="subject-selectors">
-            <!-- Labels generated by JS -->
-        </div>
+        <div class="flex flex-wrap gap-3 mb-8 no-print" id="subject-selectors"></div>
 
         <div class="timetable-container">
             <div class="timetable-grid" id="grid">
-                <!-- Header Row -->
+                <!-- Headers -->
                 <div class="grid-header" style="grid-column: 1; grid-row: 1;">Time</div>
                 <div class="grid-header" style="grid-column: 2; grid-row: 1;">Monday</div>
                 <div class="grid-header" style="grid-column: 3; grid-row: 1;">Tuesday</div>
@@ -316,30 +252,31 @@
                 <div class="grid-header" style="grid-column: 5; grid-row: 1;">Thursday</div>
                 <div class="grid-header" style="grid-column: 6; grid-row: 1;">Friday</div>
 
-                <!-- Time Columns -->
+                <!-- Time Columns (Rows 2 to 5: Morning) -->
                 <div class="time-col" style="grid-column: 1; grid-row: 2;"><span>08.00</span><span>08.50</span></div>
                 <div class="time-col" style="grid-column: 1; grid-row: 3;"><span>09.00</span><span>09.50</span></div>
                 <div class="time-col" style="grid-column: 1; grid-row: 4;"><span>10.00</span><span>10.50</span></div>
                 <div class="time-col" style="grid-column: 1; grid-row: 5;"><span>11.00</span><span>11.50</span></div>
                 
+                <!-- Lunch Row (Row 6) -->
                 <div class="lunch-row">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" /></svg>
                     Lunch Break (12.00 - 12.55)
                 </div>
                 
-                <div class="time-col" style="grid-column: 1; grid-row: 7;"><span>01.00</span><span>01.50</span></div>
-                <div class="time-col" style="grid-column: 1; grid-row: 8;"><span>02.00</span><span>02.50</span></div>
-                <div class="time-col" style="grid-column: 1; grid-row: 9;"><span>03.00</span><span>03.50</span></div>
-                <div class="time-col" style="grid-column: 1; grid-row: 10;"><span>04.00</span><span>04.50</span></div>
-                <div class="time-col" style="grid-column: 1; grid-row: 11;"><span>05.00</span><span>05.50</span></div>
+                <!-- Afternoon Times (Rows 7 to 12) -->
+                <div class="time-col" style="grid-column: 1; grid-row: 7;"><span>13.00</span><span>13.50</span></div>
+                <div class="time-col" style="grid-column: 1; grid-row: 8;"><span>14.00</span><span>14.50</span></div>
+                <div class="time-col" style="grid-column: 1; grid-row: 9;"><span>15.00</span><span>15.50</span></div>
+                <div class="time-col" style="grid-column: 1; grid-row: 10;"><span>16.00</span><span>16.50</span></div>
+                <div class="time-col" style="grid-column: 1; grid-row: 11;"><span>17.00</span><span>17.50</span></div>
+                <div class="time-col" style="grid-column: 1; grid-row: 12;"><span>18.00</span><span>18.50</span></div>
 
-                <!-- Dynamic Content Container -->
                 <div id="dynamic-content" style="display: contents;"></div>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         <span id="toast-msg">Message</span>
@@ -355,68 +292,64 @@
             { id: 'COST', name: 'Computer Studies' }
         ];
 
-        // Standard Lectures (Fixed Times)
+        // Master Lecture Data mapped precisely to grid rows (Row 2 = 8am, Row 7 = 1pm, etc.)
         const lectureData = [
             // MONDAY
             { subj: 'CHEM', code: 'CHEM 22702', type: 'Lecture', col: 2, row: 2, span: 1, loc: 'B1 212' },
-            { subj: 'MIBI', code: 'MIBI 22554 (EM)', type: 'Lecture', col: 2, row: 2, span: 1, loc: 'A11 207' },
             { subj: 'ZOOL', code: 'ZOOL 22732', type: 'Lecture', col: 2, row: 7, span: 1, loc: 'A11 201' },
-            { subj: 'ZOOL', code: 'ZOOL 22742', type: 'Lecture', col: 2, row: 8, span: 1, loc: 'A11 201' },
-            { subj: 'COST', code: 'COST 22073', type: 'Lecture', col: 2, row: 9, span: 1, loc: 'A11 201' },
-            { subj: 'MIBI', code: 'MIBI 22554 (EM)', type: 'Lecture', col: 2, row: 9, span: 1, loc: 'A11 307' },
+            { subj: 'ZOOL', code: 'ZOOL 22742', type: 'Lecture', col: 2, row: 8, span: 2, loc: 'A11 201' },
+            { subj: 'COST', code: 'COST 22073', type: 'Lecture', col: 2, row: 10, span: 1, loc: 'A11 201' },
             { subj: 'BIOC', code: 'BIOC 22642', type: 'Lecture', col: 2, row: 10, span: 1, loc: 'A7 301' },
 
             // TUESDAY
             { subj: 'ZOOL', code: 'ZOOL 22732', type: 'Lecture', col: 3, row: 2, span: 1, loc: 'A11 201' },
-            { subj: 'COST', code: 'COST 22073', type: 'Lecture', col: 3, row: 9, span: 1, loc: 'A11 307' },
-            { subj: 'PLBL', code: 'PLBL 22554', type: 'Lecture', col: 3, row: 10, span: 1, loc: 'A7 201' },
+            { subj: 'COST', code: 'COST 22073', type: 'Lecture', col: 3, row: 7, span: 2, loc: 'A11 307' },
+            { subj: 'PLBL', code: 'PLBL 22554', type: 'Lecture', col: 3, row: 10, span: 2, loc: 'A7 201' },
 
             // WEDNESDAY
             { subj: 'BIOC', code: 'BIOC 22642', type: 'Lecture', col: 4, row: 2, span: 1, loc: 'A11 207' },
-            { subj: 'MIBI', code: 'MIBI 22534', type: 'Lecture', col: 4, row: 2, span: 1, loc: 'A7 303' },
-            { subj: 'MIBI', code: 'MIBI 22554 (EM)', type: 'Lecture', col: 4, row: 7, span: 1, loc: 'A11 201' },
+            { subj: 'MIBI', code: 'MIBI 22534', type: 'Lecture', col: 4, row: 4, span: 2, loc: 'A7 303' }, // Wednesday morning MIBI 22534 (10-12)
+            { subj: 'BIOC', code: 'BIOC 22652', type: 'Lecture', col: 4, row: 7, span: 2, loc: 'A7 201' },
             { subj: 'CHEM', code: 'CHEM 22712', type: 'Lecture', col: 4, row: 10, span: 1, loc: 'B1 212' },
             { subj: 'CHEM', code: 'CHEM 22702', type: 'Lecture', col: 4, row: 11, span: 1, loc: 'B1 212' },
 
             // THURSDAY
-            { subj: 'PLBL', code: 'PLBL 22554', type: 'Lecture', col: 5, row: 2, span: 1, loc: 'A11 201' },
-            { subj: 'BIOC', code: 'BIOC 22652', type: 'Lecture', col: 5, row: 7, span: 1, loc: 'A7 201' },
+            { subj: 'PLBL', code: 'PLBL 22554', type: 'Lecture', col: 5, row: 2, span: 2, loc: 'A11 201' },
             { subj: 'PLBL', code: 'PLBL 22541', type: 'Lecture', col: 5, row: 10, span: 1, loc: 'A7 201' },
 
             // FRIDAY
             { subj: 'CHEM', code: 'CHEM 22712', type: 'Lecture', col: 6, row: 2, span: 1, loc: 'B1 212' },
-            { subj: 'COST', code: 'COST 22082', type: 'Lecture', col: 6, row: 9, span: 1, loc: 'A7 303' },
-            { subj: 'MIBI', code: 'MIBI 22534', type: 'Lecture', col: 6, row: 10, span: 1, loc: 'A11 307' }
+            { subj: 'MIBI', code: 'MIBI 22534', type: 'Lecture', col: 6, row: 7, span: 2, loc: 'A11 307' },
+            { subj: 'COST', code: 'COST 22082', type: 'Lecture', col: 6, row: 7, span: 2, loc: 'A7 303' }
         ];
 
+        // Master Lab Data containing all user-specified custom conditions & group slots
         const labData = [
-            // CHEM 22721 Group Logic based on PDF
-            { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 2, row: 3, span: 3, loc: 'Group 1', condition: (s) => !s.includes('ZOOL') },
+            // MONDAY LABS
+            { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 2, row: 3, span: 3, loc: 'Group 1', condition: (s) => (s.includes('PLBL') && s.includes('BIOC')) || (s.includes('PLBL') && s.includes('MIBI')) || (s.includes('MIBI') && s.includes('BIOC')) },
+            { subj: 'ZOOL', code: 'ZOOL 22752', type: 'LAB', col: 2, row: 3, span: 3, loc: 'No Grouping', condition: () => true },
+
+            // TUESDAY LABS
+            { subj: 'PLBL', code: 'PLBL 22561', type: 'LAB', col: 3, row: 3, span: 3, loc: 'Group 1', condition: (s) => s.includes('MIBI') || s.includes('COST') || (!s.includes('MIBI') && !s.includes('COST')) },
+            { subj: 'PLBL', code: 'PLBL 22561', type: 'LAB', col: 3, row: 7, span: 3, loc: 'Group 2', condition: (s) => !s.includes('MIBI') && !s.includes('COST') },
+            { subj: 'MIBI', code: 'MIBI 22542', type: 'LAB', col: 3, row: 7, span: 3, loc: '', condition: () => true },
+            // Added Tuesday morning CHEM 22721 Group for MIBI + ZOOL students (09:00 - 12:00, row 3, span 3)
+            { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 3, row: 3, span: 3, loc: 'MIBI/ZOOL Group', condition: (s) => s.includes('MIBI') && s.includes('ZOOL') },
+
+            // WEDNESDAY LABS
             { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 4, row: 3, span: 3, loc: 'Group 2', condition: (s) => !s.includes('MIBI') },
             { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 4, row: 7, span: 3, loc: 'Group 3', condition: (s) => !s.includes('BIOC') },
+
+            // THURSDAY LABS
             { subj: 'CHEM', code: 'CHEM 22721', type: 'LAB', col: 5, row: 3, span: 3, loc: 'Group 4', condition: (s) => !s.includes('PLBL') && !s.includes('MIBI') },
-            
-            // ZOOL 22752 (No grouping text removed as requested)
-            { subj: 'ZOOL', code: 'ZOOL 22752', type: 'LAB', col: 2, row: 3, span: 3, loc: '', condition: (s) => true },
-            { subj: 'ZOOL', code: 'ZOOL 22752', type: 'LAB', col: 6, row: 3, span: 3, loc: '', condition: (s) => true },
+            { subj: 'MIBI', code: 'MIBI 22542', type: 'LAB', col: 5, row: 4, span: 2, loc: '', condition: () => true },
+            { subj: 'BIOC', code: 'BIOC 22661', type: 'LAB', col: 5, row: 7, span: 3, loc: '', condition: () => true },
+            { subj: 'COST', code: 'COST 22073', type: 'LAB', col: 5, row: 7, span: 2, loc: '', condition: () => true },
 
-            // PLBL 22561
-            { subj: 'PLBL', code: 'PLBL 22561', type: 'LAB', col: 3, row: 3, span: 3, loc: 'Group 1', condition: (s) => s.includes('MIBI') || s.includes('COST') },
-            { subj: 'PLBL', code: 'PLBL 22561', type: 'LAB', col: 3, row: 7, span: 3, loc: 'Group 2', condition: (s) => true },
-
-            // PLBL 22541
-            { subj: 'PLBL', code: 'PLBL 22541', type: 'LAB', col: 6, row: 3, span: 3, loc: 'Group 1', condition: (s) => s.includes('COST') || s.includes('MIBI') || s.includes('BIOC') },
-            { subj: 'PLBL', code: 'PLBL 22541', type: 'LAB', col: 6, row: 7, span: 3, loc: 'Group 2', condition: (s) => s.includes('ZOOL') },
-
-            // MIBI Labs
-            { subj: 'MIBI', code: 'MIBI 22562 (EM)', type: 'LAB', col: 2, row: 3, span: 3, loc: '', condition: (s) => true },
-            { subj: 'MIBI', code: 'MIBI 22562 (EM)', type: 'LAB', col: 6, row: 7, span: 3, loc: '', condition: (s) => true },
-            { subj: 'MIBI', code: 'MIBI 22542', type: 'LAB', col: 3, row: 7, span: 3, loc: '', condition: (s) => true },
-            { subj: 'MIBI', code: 'MIBI 22542', type: 'LAB', col: 5, row: 3, span: 3, loc: '', condition: (s) => true },
-
-            // BIOC & COST Labs
-            { subj: 'BIOC', code: 'BIOC 22661', type: 'LAB', col: 4, row: 3, span: 3, loc: '', condition: (s) => true },
-            { subj: 'COST', code: 'COST 22073', type: 'LAB', col: 4, row: 7, span: 3, loc: 'TBA', condition: (s) => true }
+            // FRIDAY LABS (PLBL 22541 Group 1 adjusted to span 2 for 10.00-12.00, starting at row 4)
+            { subj: 'PLBL', code: 'PLBL 22541', type: 'LAB', col: 6, row: 4, span: 2, loc: 'Group 1 (ICT)', condition: () => true },
+            { subj: 'PLBL', code: 'PLBL 22541', type: 'LAB', col: 6, row: 7, span: 2, loc: 'Group 2 (ICT)', condition: (s) => !s.includes('MIBI') },
+            { subj: 'ZOOL', code: 'ZOOL 22752', type: 'LAB', col: 6, row: 3, span: 3, loc: 'No Grouping', condition: () => true }
         ];
 
         let selectedPathways = [];
@@ -424,7 +357,6 @@
 
         function init() {
             const selectorContainer = document.getElementById('subject-selectors');
-            
             subjects.forEach(sub => {
                 const label = document.createElement('label');
                 label.className = `subject-toggle inline-block`;
@@ -437,7 +369,6 @@
                 `;
                 selectorContainer.appendChild(label);
             });
-
             renderGrid();
         }
 
@@ -462,46 +393,46 @@
             renderGrid();
         }
 
+        function doItemsOverlap(a, b) {
+            if (a.col !== b.col) return false;
+            const aStart = a.row, aEnd = a.row + a.span - 1;
+            const bStart = b.row, bEnd = b.row + b.span - 1;
+            return Math.max(aStart, bStart) <= Math.min(aEnd, bEnd);
+        }
+
         function resolveTimetable(selected) {
             let finalSchedule = [];
-            let occupiedSlots = new Set(); 
-
+            
+            // 1. Always lock in required lectures for selected subjects
             let activeLectures = lectureData.filter(item => selected.includes(item.subj));
-            activeLectures.forEach(l => {
-                finalSchedule.push(l);
-                for(let i=0; i<l.span; i++) {
-                    occupiedSlots.add(`${l.col}-${l.row + i}`);
-                }
+            finalSchedule.push(...activeLectures.map(l => ({...l, id: Math.random()})));
+
+            // 2. Resolve all available and valid lab options matching user subject combinations
+            let requiredLabSubjects = labData.filter(l => selected.includes(l.subj));
+            
+            requiredLabSubjects.forEach(opt => {
+                // Check if user's combination satisfies custom grouping/exclusion rule
+                if (opt.condition && !opt.condition(selected)) return;
+                
+                // Add all valid session options available for their choices so users can see all choices
+                finalSchedule.push({...opt, id: Math.random()});
             });
 
-            let requiredLabCodes = [...new Set(labData.filter(l => selected.includes(l.subj)).map(l => l.code))];
-
-            requiredLabCodes.forEach(code => {
-                let options = labData.filter(l => l.code === code);
-                
-                // Smart collision & condition resolution
-                let bestMatch = options.find(opt => {
-                    if (!opt.condition(selected)) return false; 
-                    let hasCollision = false;
-                    for(let i=0; i<opt.span; i++){
-                        if (occupiedSlots.has(`${opt.col}-${opt.row + i}`)) {
-                            hasCollision = true; 
-                            break;
-                        }
-                    }
-                    return !hasCollision;
-                });
-
-                if (!bestMatch) {
-                    bestMatch = options.find(opt => opt.condition(selected)) || options[0];
-                }
-
-                if (bestMatch) {
-                    finalSchedule.push(bestMatch);
-                    for(let i=0; i<bestMatch.span; i++) {
-                        occupiedSlots.add(`${bestMatch.col}-${bestMatch.row + i}`);
+            // 3. Automated side-by-side collision handling for items occurring simultaneously
+            finalSchedule.forEach(item => { item.overlaps = []; });
+            for(let i=0; i < finalSchedule.length; i++){
+                for(let j=i+1; j < finalSchedule.length; j++){
+                    if(doItemsOverlap(finalSchedule[i], finalSchedule[j])) {
+                        finalSchedule[i].overlaps.push(finalSchedule[j].id);
+                        finalSchedule[j].overlaps.push(finalSchedule[i].id);
                     }
                 }
+            }
+            
+            finalSchedule.forEach(item => {
+                let sortedGroup = [item.id, ...item.overlaps].sort();
+                item.totalLanes = sortedGroup.length;
+                item.laneIndex = sortedGroup.indexOf(item.id);
             });
 
             return finalSchedule;
@@ -515,17 +446,17 @@
                 container.innerHTML = `
                     <div class="empty-state-msg">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-                        Select subjects above to instantly generate your filtered schedule.
+                        Select up to 3 subjects above to instantly view all your possible class and lab time slots.
                     </div>
                 `;
             }
 
-            // Empty structural slots
+            // Draw structural grid dots
             for(let c=2; c<=6; c++){
-                for(let r=2; r<=11; r++){
+                for(let r=2; r<=12; r++){
                     if(r === 6) continue; 
                     const empty = document.createElement('div');
-                    empty.className = 'empty-slot';
+                    empty.className = 'empty-slot no-print';
                     empty.style.gridColumn = c;
                     empty.style.gridRow = r;
                     container.appendChild(empty);
@@ -542,12 +473,18 @@
                 wrapper.style.gridColumn = course.col;
                 wrapper.style.gridRow = `${course.row} / span ${course.span}`;
                 wrapper.style.zIndex = '5';
+                
+                // Dynamically proportion cell width if multiple options/classes share the exact same slot
+                if(course.totalLanes > 1) {
+                    wrapper.style.width = `${100 / course.totalLanes}%`;
+                    wrapper.style.marginLeft = `${(100 / course.totalLanes) * course.laneIndex}%`;
+                }
 
                 const card = document.createElement('div');
                 card.className = `course-card theme-${course.subj}`;
                 
                 let innerHTML = `
-                    <div class="course-code font-bold text-lg leading-tight mb-1">${course.code}</div>
+                    <div class="course-title">${course.code}</div>
                     <div class="course-type">${course.type}</div>
                 `;
                 
@@ -568,8 +505,6 @@
                 showToast("Please select at least one subject to export.");
                 return;
             }
-            // Trigger native browser print behavior
-            // The @media print CSS ensures it prints nicely in landscape as a PDF
             window.print();
         }
 
